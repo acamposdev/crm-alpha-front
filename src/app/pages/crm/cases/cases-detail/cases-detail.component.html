@@ -1,0 +1,47 @@
+<div class="col col-md-12 panel-fade">
+  <div class="col col-md-12 panel-shadow">
+      <h4>CASE</h4>
+
+      <hr/>
+
+      <app-data-table></app-data-table>
+
+      <form ngNativeValidate [formGroup]="form" (ngSubmit)="save()">
+
+          <input type="hidden" formControlName="customerId" name="customerId">
+          <input type="hidden" formControlName="id" name="id">
+          
+          <div class="form-group row">
+              <label class="col-sm-2 col-form-label">REF</label>
+              <div class="col-sm-10">
+                  <input class="form-control" formControlName="ref" type="text" name="ref">
+              </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Open date</label>
+              <div class="col-sm-10">
+                  <input class="form-control" formControlName="opendate" type="text" name="opendate">
+              </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Finalization date</label>
+              <div class="col-sm-10">
+                  <input class="form-control" formControlName="finalizationdate" type="text" name="finalizationdate">
+              </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Comments</label>
+              <div class="col-sm-10">
+                  <input class="form-control" formControlName="comments" type="text" name="comments">
+              </div>
+          </div>
+          <hr/>
+          <div class="form-group row">
+              <div class="col-sm-12">
+                  <button type="button" [routerLink]="['/crm', customerId]" class="btn btn-default pull-right col-sm-2">BACK</button>
+                  <button type="submit" class="btn btn-info pull-right col-sm-2">SAVE</button>
+              </div> 
+          </div>
+      </form>
+  </div>
+</div>

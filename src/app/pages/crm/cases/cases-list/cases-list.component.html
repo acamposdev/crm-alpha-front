@@ -1,0 +1,41 @@
+<div class="col col-md-12 panel-fade">
+
+    <app-data-table></app-data-table>
+
+    <div class="col col-md-12 panel-shadow">
+
+        <a [routerLink]="['case-detail/new']" routerLinkActive="router-link-active"  class="btn btn-primary pull-right col-sm-2">NEW CASE</a>
+
+        <h4>CASES</h4>
+        <hr/>
+        <table class="table table-sm table-hover">
+            <thead>
+                <tr class="info">
+                    <th scope="col">REF</th>
+                    <th scope="col">Open date</th>
+                    <th scope="col">Finalization date</th>
+                    <th scope="col">Comments</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>  
+              <tr *ngFor="let case of cases" (click)="loadCaseDetail(case)">
+                  <td scope="row" [ngClass]="{'font-weight-bold': !case.finalizationdate }" class="font-weight-bold">{{ case.ref }}</td>
+                  <td>{{ case.opendate }}</td>
+                  <td>{{ case.finalizationdate }}</td>
+                  <td>{{ case.comments }}</td>
+                  <td></td>
+              </tr>
+            </tbody>
+        </table>
+
+        
+        <app-data-table 
+            [limit]="10" 
+            [data]="cases" 
+            [cols]="['ref', 'opendate', 'finalizationdate', 'comments', 'Actions']"
+            (itemSelection)="loadCaseDetail($event)">
+        </app-data-table>
+        
+    </div>
+</div>

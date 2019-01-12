@@ -1,0 +1,37 @@
+<div class="col col-md-12 panel-fade">
+  <div class="col col-md-12 panel-shadow">
+    
+    <h4>STATISTICS</h4>
+    <hr/>
+
+    <div class="col col-md-3">
+      <canvas baseChart
+        [data]="doughnutChartData"
+        [labels]="doughnutChartLabels"
+        [chartType]="doughnutChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"
+        [legend]="false"
+        height="140">
+      </canvas>
+    </div>
+
+    <div class="col col-md-6">
+      <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+        [options]="barChartOptions"
+        height="80">
+      </canvas>
+    </div>
+
+    <div class="col col-md-3">
+        <h1 class="soft mt-0">{{ chartDataModel?.numCases }} Casos</h1>
+        <h4 class="soft mt-0">({{ chartDataModel?.numOpenCases }} Abiertos)</h4>
+      
+    </div>
+
+  </div>
+</div>

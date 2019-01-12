@@ -1,0 +1,6 @@
+<app-data-table 
+  [limit]="10" 
+  [data]="customers" 
+  [cols]="['id', 'name', 'gender', 'address', 'city', 'zipcode', 'phone', 'email']"
+  (itemSelection)="loadCustomer($event)">
+</app-data-table>

@@ -1,0 +1,24 @@
+<!--  
+  <p>
+    data-table works! {{ limit }} pages: {{ pages}}
+    
+    Header: {{ header }}
+    Cols: {{ colsSelected }}
+  </p>
+-->
+
+
+<div class="panel-fade">
+  <table class="table table-sm table-hover">
+      <thead>
+          <tr class="info">
+              <th scope="col" *ngFor="let col of header" [innerHTML]="col"></th>
+          </tr>
+      </thead>
+      <tbody>  
+        <tr *ngFor="let item of data" (click)="clickItem(item)">
+            <td scope="row" *ngFor="let col of header" [innerHTML]="item[col]"></td>
+        </tr>
+      </tbody>
+  </table>
+</div>
