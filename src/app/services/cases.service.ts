@@ -1,15 +1,13 @@
+
+import { throwError as observableThrowError,  Observable ,  Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
+import { map, catchError } from 'rxjs/operators';
 
 import { END_POINT } from '../config/config';
 
 import { Case } from '../models/case';
-import { Observable } from 'rxjs/Observable';
 import { PopupMessageService } from '../components/popup-message/popup-message.service';
-import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class CasesService {
@@ -30,17 +28,21 @@ export class CasesService {
   }
 
   save(caseToSave: Case) {
-    return this.http.post(END_POINT + 'api/v1/cases', caseToSave)
-    .map((result) => {
-      this.loadCases(caseToSave.customerId).subscribe((cases: Case[]) => {
-        this.setCases(cases);
-        this.popupMessage.popup('success', 'Caso guardado corectamente!');
-      });
-    })
-    .catch(err => {
-      this.popupMessage.popup('danger', err.message);
-      return Observable.throw(err);
-    });
+    return this.http.post(END_POINT + 'api/v1/cases', caseToSave).pipe(
+
+      map((result) => {
+        this.loadCases(caseToSave.customerId).subscribe((cases: Case[]) => {
+          this.setCases(cases);
+          this.popupMessage.popup('success', 'Caso guardado corectamente!');
+        });
+      }),
+
+      catchError(err => {
+        this.popupMessage.popup('danger', err.message);
+        return observableThrowError(err);
+      })
+
+    );
   }
 
   setCases(cases: Case[]) {
