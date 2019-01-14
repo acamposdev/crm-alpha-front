@@ -34,6 +34,7 @@ export class CasesService {
     .map((result) => {
       this.loadCases(caseToSave.customerId).subscribe((cases: Case[]) => {
         this.setCases(cases);
+        this.popupMessage.popup('success', 'Caso guardado corectamente!');
       });
     })
     .catch(err => {

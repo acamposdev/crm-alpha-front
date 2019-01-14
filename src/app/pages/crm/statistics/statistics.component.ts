@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CasesService } from '../../../services/cases.service';
-import { Observable } from 'rxjs/Observable';
-import { Case } from '../../../models/case';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Case } from '../../../models/case';
+import { CasesService } from '../../../services/cases.service';
 
 @Component({
   selector: 'app-statistics',
@@ -78,7 +77,7 @@ export class StatisticsComponent implements OnDestroy {
       }
 
       // Bar chart logic
-      chartBar[new Date(item.finalizationdate).getMonth()]++;
+      chartBar[new Date(item.opendate).getMonth()]++;
     });
 
     numOpenCases = chartDoughnut[1];

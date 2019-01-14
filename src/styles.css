@@ -33,6 +33,10 @@ body {
     color: #00B7FF;
   }
   
+  .btn {
+    border-radius: 0px;
+  }
+
   label {
     /*text-align: right;*/
     margin-top: 4px;
@@ -150,6 +154,7 @@ body {
     float: left;
     color: #DDD;
     padding-top: 15px;
+    margin-bottom: 0px;
   }
   
   .customer hr {

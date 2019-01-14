@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CrmComponent } from './crm.component';
+import { RouterModule, Routes } from '@angular/router';
 import { CasesDetailComponent } from './cases/cases-detail/cases-detail.component';
-import { CasesListComponent } from './cases/cases-list/cases-list.component';
 import { CasesComponent } from './cases/cases.component';
+import { CrmComponent } from './crm.component';
 
 const routes: Routes = [
   {

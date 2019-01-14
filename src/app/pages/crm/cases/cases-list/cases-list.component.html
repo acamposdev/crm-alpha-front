@@ -35,7 +35,7 @@
         <app-data-table 
             [limit]="10" 
             [data]="cases" 
-            [cols]="['ref', 'opendate', 'finalizationdate', 'comments', 'Actions']"
+            [cols]="['ref', 'opendate', 'finalizationdate', 'lastmodificationdate', 'comments', 'Actions']"
             (itemSelection)="loadCaseDetail($event)">
         </app-data-table>
         

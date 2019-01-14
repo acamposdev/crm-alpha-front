@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CasesService } from '../../../../services/cases.service';
-import { Case } from '../../../../models/case';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { PopupMessageComponent } from '../../../../components/popup-message/popup-message.component';
 import { PopupMessageService } from '../../../../components/popup-message/popup-message.service';
+import { Case } from '../../../../models/case';
+import { CasesService } from '../../../../services/cases.service';
 
 @Component({
   selector: 'app-cases-detail',
@@ -61,7 +60,7 @@ export class CasesDetailComponent implements OnInit {
 
   save() {
     this.caseService.save(this.form.value).subscribe(result => {
-      this.popupMessageService.popup('success', 'Caso guardado corectamente!');
+      // this.popupMessageService.popup('success', 'Caso guardado corectamente!');
     });
   }
 }

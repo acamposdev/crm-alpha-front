@@ -4,8 +4,6 @@ import { PopupMessageComponent } from './popup-message.component';
 @Injectable()
 export class PopupMessageService {
   private popupMessage: PopupMessageComponent;
-  private level: string;
-  private message: string;
 
   constructor() { }
 

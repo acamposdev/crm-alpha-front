@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-data-table',
@@ -37,12 +37,10 @@ export class DataTableComponent implements OnInit, OnChanges {
 
   private calculateHeaders(data: any[]) {
 
-
     if (data.length === 0) {
       return this.header = [];
     }
 
     this.header = this.cols || Object.keys(data[0]);
   }
-
 }
