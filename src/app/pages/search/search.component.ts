@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit {
 
   loadCustomers() {
     this.customerService.loadCustomers().subscribe((items: any) => {
+      console.log('SearchComponent - loadCustomers');
       this.customers = [...items];
       this.customerService.setCustomers(items);
     });

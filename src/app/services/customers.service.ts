@@ -28,6 +28,7 @@ export class CustomerService {
   }
 
   loadCustomers() {
+    console.log('Load customers...');
     return this.http.get(END_POINT + 'api/v1/customers');
   }
 
