@@ -16,6 +16,17 @@ export class StatisticsComponent implements OnDestroy {
   public doughnutChartData: number[] = [0, 0];
   public doughnutChartType: string = 'doughnut';
 
+  public barChartColors: Array<any> = [
+    {
+      backgroundColor: 'rgba(54, 162, 235, 0.5)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];
+
   // Chart data model
   public chartDataModel: any;
 
@@ -29,13 +40,13 @@ export class StatisticsComponent implements OnDestroy {
               beginAtZero: true
           },
           gridLines: {
-              display: true
+              display: false
           },
           stacked: true
       }],
       xAxes: [{
           gridLines: {
-              display: true
+              display: false
           },
           display: true,
           stacked: true
@@ -98,6 +109,7 @@ export class StatisticsComponent implements OnDestroy {
   public chartHovered(e: any): void {
     console.log(e);
   }
+
 
   ngOnDestroy() {
     this.casesObservable.unsubscribe();

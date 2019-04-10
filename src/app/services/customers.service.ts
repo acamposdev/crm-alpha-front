@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { END_POINT } from '../config/config';
 import { Subject ,  Observable } from 'rxjs';
+import { tap } from 'rxjs/internal/operators/tap';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable()
 export class CustomerService {
@@ -13,7 +15,9 @@ export class CustomerService {
 
   constructor(
     private http: HttpClient
-  ) {}
+  ) {
+    console.log('CustomerService - constructor');
+  }
 
   getCustomers() {
     return this.customers;

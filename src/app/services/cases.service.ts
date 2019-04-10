@@ -17,6 +17,7 @@ export class CasesService {
     private http: HttpClient,
     private popupMessage: PopupMessageService
   ) {
+    console.log('CasesService - constructor');
   }
 
   loadCases(customerId: string) {

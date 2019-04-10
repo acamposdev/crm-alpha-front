@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CustomerService } from '../../services/customers.service';
+import { CustomerService } from '../../../app/services/customers.service';
 
 @Component({
   selector: 'app-crm',

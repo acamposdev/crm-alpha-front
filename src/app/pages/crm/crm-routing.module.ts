@@ -4,7 +4,7 @@ import { CasesDetailComponent } from './cases/cases-detail/cases-detail.componen
 import { CasesComponent } from './cases/cases.component';
 import { CrmComponent } from './crm.component';
 
-const routes: Routes = [
+const crmRoutes: Routes = [
   {
     path: '',
     component: CrmComponent,
@@ -22,11 +22,11 @@ const routes: Routes = [
         component: CasesDetailComponent
       }
     ]
-  },
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(crmRoutes)],
   exports: [RouterModule]
 })
 export class CrmRoutingModule { }

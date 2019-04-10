@@ -23,6 +23,7 @@
         [legend]="barChartLegend"
         [chartType]="barChartType"
         [options]="barChartOptions"
+        [colors]="barChartColors"
         height="80">
       </canvas>
     </div>
@@ -30,7 +31,6 @@
     <div class="col col-md-3">
         <h1 class="soft mt-0">{{ chartDataModel?.numCases }} Casos</h1>
         <h4 class="soft mt-0">({{ chartDataModel?.numOpenCases }} Abiertos)</h4>
-      
     </div>
 
   </div>

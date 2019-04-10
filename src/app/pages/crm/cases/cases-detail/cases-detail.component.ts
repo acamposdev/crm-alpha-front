@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PopupMessageService } from '../../../../components/popup-message/popup-message.service';
-import { Case } from '../../../../models/case';
-import { CasesService } from '../../../../services/cases.service';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { map } from 'rxjs/internal/operators/map';
+import { switchMap, tap } from 'rxjs/operators';
+import { Case } from '../../../../../app/models/case';
+import { CasesService } from '../../../../../app/services/cases.service';
+import { PopupMessageService } from '../../../../../app/components/popup-message/popup-message.service';
 
 @Component({
   selector: 'app-cases-detail',
@@ -21,11 +23,13 @@ export class CasesDetailComponent implements OnInit {
     private router: Router,
     private caseService: CasesService,
     private popupMessageService: PopupMessageService
-    ) {
-      this.activatedRoute.params.subscribe((params: any) => {
-        this.caseId = params.caseId;
-      });
-    }
+  ) {
+    this.activatedRoute.params.pipe(
+      map((param: Params) => param.caseId),
+      switchMap((caseId: string) => this.caseService.loadCase(caseId)),
+      tap(this.onCaseLoad)
+    ).subscribe();
+  }
 
   ngOnInit() {
     // Init formGroup object
@@ -38,29 +42,27 @@ export class CasesDetailComponent implements OnInit {
       comments: new FormControl(null),
       customerId: new FormControl(null, Validators.required)
     });
-
-
-    if (this.caseId !== 'new') {
-      this.caseService.loadCase(this.caseId).subscribe((result: any) => {
-        this.case = result;
-        this.customerId = this.case.customerId;
-
-        this.form.setValue({
-          id: this.case.id,
-          ref: this.case.ref,
-          opendate: this.case.opendate,
-          updatedate: null,
-          finalizationdate: this.case.finalizationdate,
-          comments: this.case.comments,
-          customerId: this.case.customerId
-        });
-      });
-    }
   }
 
   save() {
     this.caseService.save(this.form.value).subscribe(result => {
-      // this.popupMessageService.popup('success', 'Caso guardado corectamente!');
+      this.popupMessageService.popup('success', 'Caso guardado corectamente!');
+    });
+  }
+
+  private onCaseLoad = (caseLoaded: Case) => {
+    this.case = caseLoaded;
+    this.customerId = this.case.customerId;
+
+    this.form.setValue({
+      id: this.case.id,
+      ref: this.case.ref,
+      opendate: this.case.opendate,
+      updatedate: null,
+      finalizationdate: this.case.finalizationdate,
+      comments: this.case.comments,
+      customerId: this.case.customerId
     });
   }
 }
+
