@@ -16,15 +16,12 @@ export class CacheInterceptor implements HttpInterceptor {
     private cacheMap: Map<string, any> = new Map<string, any>();
 
     intercept(httpRequest: HttpRequest<any>, handler: HttpHandler): Observable<HttpEvent<any>> {
-        // Don't cache if
-		// 1. It's not a GET request
-		// 2. If URI is not supposed to be cached
-		if (httpRequest.method !== "GET") {
+        if (httpRequest.method !== 'GET') {
             return handler.handle(httpRequest);
         }
 
         // Also leave scope of resetting already cached data for a URI
-        if (httpRequest.headers.get("reset-cache")) {
+        if (httpRequest.headers.get('reset-cache')) {
             this.cacheMap = new Map<string, any>();
         }
 
